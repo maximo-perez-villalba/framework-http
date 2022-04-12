@@ -1,7 +1,7 @@
 <?php
 namespace framework\http\controller\response;
 
-use ecommerce\app\Env;
+use framework\environment\Env;
 
 abstract class HTTPResponse
 {

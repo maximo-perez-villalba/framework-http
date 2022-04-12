@@ -1,7 +1,7 @@
 <?php
 namespace framework\http\controller\request;
 
-use ecommerce\app\Env;
+use framework\environment\Env;
 
 abstract class HTTPRequestMap
 {

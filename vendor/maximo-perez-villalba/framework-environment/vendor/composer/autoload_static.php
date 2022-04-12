@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3
+class ComposerStaticInitf9bb27631ac38abd0f03d9233d2e6dfb
 {
     public static $prefixLengthsPsr4 = array (
         'f' => 
@@ -17,7 +17,6 @@ class ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3
         'framework\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/framework',
-            1 => __DIR__ . '/..' . '/maximo-perez-villalba/framework-environment/src/framework',
         ),
     );
 
@@ -28,9 +27,9 @@ class ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf9bb27631ac38abd0f03d9233d2e6dfb::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf9bb27631ac38abd0f03d9233d2e6dfb::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitf9bb27631ac38abd0f03d9233d2e6dfb::$classMap;
 
         }, null, ClassLoader::class);
     }

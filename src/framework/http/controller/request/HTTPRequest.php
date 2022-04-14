@@ -91,7 +91,7 @@ abstract class HTTPRequest
      * @param string $context (default NULL).
      * @return string|NULL
      */
-    public function sessionGet( string $id, string $context = NULL ): ?string
+    static public function sessionGet( string $id, string $context = NULL ): ?string
     {
         if ( session_status() == PHP_SESSION_ACTIVE )
         {
@@ -110,7 +110,7 @@ abstract class HTTPRequest
      * @param string $value
      * @param string $context (default NULL)
      */
-    public function sessionSet( string $id, string $value, string $context = NULL )
+    static public function sessionSet( string $id, string $value, string $context = NULL )
     {
         if ( session_status() == PHP_SESSION_ACTIVE )
         {
@@ -127,7 +127,7 @@ abstract class HTTPRequest
      * 
      * @return string
      */
-    public function sessionDump(): string
+    static public function sessionDump(): string
     {
         $dump = '';
         if ( session_status() == PHP_SESSION_ACTIVE )

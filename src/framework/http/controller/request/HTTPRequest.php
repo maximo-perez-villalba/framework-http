@@ -75,6 +75,17 @@ abstract class HTTPRequest
     }
     
     /**
+     * return $_COOKIE[ $id ] ?? NULL;
+     * 
+     * @param string $id
+     * @return string|NULL
+     */
+    public function cookie( string $id ): ?string
+    {
+        return $_COOKIE[ $id ] ?? NULL;
+    }
+    
+    /**
      * 
      */
     abstract public function execute();

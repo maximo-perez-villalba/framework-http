@@ -62,6 +62,17 @@ abstract class HTTPRequest
     {
         return $this->response;
     }
+
+    /**
+     * return $_POST[ $id ] ?? $_GET[ $id ];
+     * 
+     * @param string $id
+     * @return string|NULL
+     */
+    public function parameter( string $id ): ?string
+    {
+        return $_POST[ $id ] ?? $_GET[ $id ];
+    }
     
     /**
      * 

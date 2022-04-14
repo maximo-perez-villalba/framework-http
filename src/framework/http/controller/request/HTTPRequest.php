@@ -96,9 +96,31 @@ abstract class HTTPRequest
         if ( !empty( session_id() ) )
         {
             $context = $context ?? basename( static::class );
-            return $_SESSION[ $context ][ $id ] ?? NULL;
+            if ( isset( $_SESSION[ $context ] ) ) 
+            {
+                return $_SESSION[ $context ][ $id ] ?? NULL;
+            }            
         }
         return NULL;
+    }
+    
+    /**
+     * 
+     * @param string $id
+     * @param string $value
+     * @param string $context (default NULL)
+     */
+    public function sessionSet( string $id, string $value, string $context = NULL )
+    {
+        if ( session_status() == PHP_SESSION_ACTIVE )
+        {
+            $context = $context ?? basename( static::class );
+            if ( isset( $_SESSION[ $context ] ) )
+            {
+                $_SESSION[ $context ] = [];
+            }
+            $_SESSION[ $context ][ $id ] = $value;
+        }
     }
     
     /**

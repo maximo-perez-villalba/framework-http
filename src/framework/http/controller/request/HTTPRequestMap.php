@@ -36,7 +36,7 @@ abstract class HTTPRequestMap
      */
     static public function get( string $urn ): HTTPRequest
     {
-        if ( self::$map[ $urn ] )
+        if ( isset( self::$map[ $urn ] ) )
         {
             $requestClassname = self::$map[ $urn ];
             if( class_exists( $requestClassname ) )

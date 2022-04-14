@@ -125,6 +125,28 @@ abstract class HTTPRequest
     
     /**
      * 
+     * @return string
+     */
+    public function sessionDump(): string
+    {
+        $dump = '';
+        if ( session_status() == PHP_SESSION_ACTIVE )
+        {
+            $dump = print_r( $_SESSION, TRUE );
+        }
+        elseif ( session_status() == PHP_SESSION_DISABLED )
+        {
+            $dump = 'Session disabled';
+        }
+        elseif ( session_status() == PHP_SESSION_NONE )
+        {
+            $dump = 'Session not started';
+        }
+        return $dump;
+    }
+    
+    /**
+     * 
      */
     abstract public function execute();
     

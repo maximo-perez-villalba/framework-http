@@ -84,6 +84,22 @@ abstract class HTTPRequest
     {
         return $_COOKIE[ $id ] ?? NULL;
     }
+
+    /**
+     * 
+     * @param string $id
+     * @param string $context (default NULL).
+     * @return string|NULL
+     */
+    public function sessionGet( string $id, string $context = NULL ): ?string
+    {
+        if ( !empty( session_id() ) )
+        {
+            $context = $context ?? basename( static::class );
+            return $_SESSION[ $context ][ $id ] ?? NULL;
+        }
+        return NULL;
+    }
     
     /**
      * 

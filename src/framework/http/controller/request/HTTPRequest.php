@@ -93,7 +93,7 @@ abstract class HTTPRequest
      */
     public function sessionGet( string $id, string $context = NULL ): ?string
     {
-        if ( !empty( session_id() ) )
+        if ( session_status() == PHP_SESSION_ACTIVE )
         {
             $context = $context ?? basename( static::class );
             if ( isset( $_SESSION[ $context ] ) ) 

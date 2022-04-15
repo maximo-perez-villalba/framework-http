@@ -44,7 +44,21 @@ abstract class HTTPRequest
             self::$current = new HTTP404Request();            
         }
         
-        /**
+        /*
+         * Corrige re-escritura URI de parametros en el método http get. 
+         */
+        if ( isset( $_SERVER[ 'REQUEST_URI' ] ) )
+        {
+            list( $urn, $parameters ) = explode( '?' , $_SERVER[ 'REQUEST_URI' ] );
+            $parameters = explode( '&' , $parameters );
+            foreach ( $parameters as $param )
+            {
+                list( $key, $value ) = explode( '=' , $param );
+                $_GET[ $key ] = $value;
+            }
+        }
+        
+        /*
          * Por defecto HTTPRequest::invoke llama al método execute.
          * La llamada por defecto a execute puede ser redirigida a otro metodo a través de  
          * la agregación del parametro __callMethod en el http post method.

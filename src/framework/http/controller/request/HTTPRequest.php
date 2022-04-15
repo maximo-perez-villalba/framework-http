@@ -112,7 +112,11 @@ abstract class HTTPRequest
      */
     public function cookie( string $id ): ?string
     {
-        return $_COOKIE[ $id ] ?? NULL;
+        if ( isset( $_COOKIE[ $id ] ) )
+        {
+            return $_COOKIE[ $id ];
+        }
+        return NULL;
     }
 
     /**

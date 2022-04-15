@@ -20,19 +20,18 @@ abstract class HTTPRequest
     {
         return self::$current;
     }
-    
+
     /**
-     * 
      * Este método trabaja coordinado con la re-escritura de URI en el archivo .htaccess.
      *  
      * RewriteEngine On
      * RewriteCond %{REQUEST_URI} !index\.php$
      * RewriteRule (.*) index.php?urn=$1
      * 
-     * @see /.htaccess
-     * @return HTTPRequest
+     * @see /.htaccess file. 
+     * @throws ErrorException
      */
-    static public function invoke() : HTTPRequest
+    static public function invoke()
     {
         self::$current = NULL;
         if( isset( $_GET[ 'urn' ] ) )
@@ -44,7 +43,29 @@ abstract class HTTPRequest
         {
             self::$current = new HTTP404Request();            
         }
-        return self::$current;
+        
+        /**
+         * Por defecto HTTPRequest::invoke llama al método execute.
+         * La llamada por defecto a execute puede ser redirigida a otro metodo a través de  
+         * la agregación del parametro __callMethod en el http post method.
+         */
+        if ( isset( $_POST[ '__callMethod' ] ) )
+        {
+            $method = $_POST[ '__callMethod' ];
+            if( method_exists( self::current() , $method ) )
+            {
+                self::current()->$method();
+            }
+            else 
+            {
+                $classname = get_class( self::current() );
+                throw new ErrorException( "Error: The method '{$method}' don't exist in {$classname}." );
+            }
+        }
+        else 
+        {
+            self::current()->execute();
+        }
     }
     
     /**
@@ -151,4 +172,3 @@ abstract class HTTPRequest
     abstract public function execute();
     
 }
-

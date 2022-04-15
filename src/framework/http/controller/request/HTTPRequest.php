@@ -92,7 +92,16 @@ abstract class HTTPRequest
      */
     public function parameter( string $id ): ?string
     {
-        return $_POST[ $id ] ?? $_GET[ $id ];
+        $parameter = NULL;
+        if ( isset( $_POST[ $id ] ) )
+        {
+            $parameter = $_POST[ $id ];
+        }
+        elseif ( isset( $_GET[ $id ] ) )
+        {
+            $parameter = $_GET[ $id ];
+        }
+        return $parameter;
     }
     
     /**

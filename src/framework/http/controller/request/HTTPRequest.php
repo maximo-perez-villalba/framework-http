@@ -2,6 +2,7 @@
 namespace framework\http\controller\request;
 
 use framework\http\controller\response\HTTPResponse;
+use ErrorException;
 
 abstract class HTTPRequest
 {
@@ -49,12 +50,15 @@ abstract class HTTPRequest
          */
         if ( isset( $_SERVER[ 'REQUEST_URI' ] ) )
         {
-            list( $urn, $parameters ) = explode( '?' , $_SERVER[ 'REQUEST_URI' ] );
-            $parameters = explode( '&' , $parameters );
-            foreach ( $parameters as $param )
+            $queryParameters =  parse_url( $_SERVER[ 'REQUEST_URI' ], PHP_URL_QUERY );
+            if( isset( $queryParameters ) )
             {
-                list( $key, $value ) = explode( '=' , $param );
-                $_GET[ $key ] = $value;
+                $parameters =  explode( '&' , $queryParameters );
+                foreach ( $parameters as $param )
+                {
+                    list( $key, $value ) =  explode( '=' , $param );
+                    $_GET[ $key ] = $value;
+                }
             }
         }
         

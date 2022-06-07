@@ -9,11 +9,12 @@
 			"email": "maximo.perez@davinci.edu.ar"
 		}
 	],
-	"version": "1.7.4",
+	"version": "1.7.5",
 	"minimum-stability": "stable",
 	"autoload": {
 		"psr-4": {
-			"framework\\": "src/framework/"
+			"framework\\": "src/framework/",
+			"demo\\": "demo/src/demo/"
 		}
 	},
 	"autoload-dev": {},

@@ -2,23 +2,23 @@
     "packages": [
         {
             "name": "maximo-perez-villalba/framework-environment",
-            "version": "1.0.0",
-            "version_normalized": "1.0.0.0",
+            "version": "1.1.2",
+            "version_normalized": "1.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maximo-perez-villalba/framework-environment.git",
-                "reference": "32fc939cd3f1c31a624124d29e640ee68836db37"
+                "reference": "6b31a07ee3088851cab936f567566f80192cc62d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximo-perez-villalba/framework-environment/zipball/32fc939cd3f1c31a624124d29e640ee68836db37",
-                "reference": "32fc939cd3f1c31a624124d29e640ee68836db37",
+                "url": "https://api.github.com/repos/maximo-perez-villalba/framework-environment/zipball/6b31a07ee3088851cab936f567566f80192cc62d",
+                "reference": "6b31a07ee3088851cab936f567566f80192cc62d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
             },
-            "time": "2022-04-12T17:59:10+00:00",
+            "time": "2022-05-02T20:15:54+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -39,7 +39,7 @@
             "description": "El componente implementa una arquitectura liviana de control del ambiente de ejecución PHP, con fines pedagógicos.",
             "support": {
                 "issues": "https://github.com/maximo-perez-villalba/framework-environment/issues",
-                "source": "https://github.com/maximo-perez-villalba/framework-environment/tree/v1.0.0"
+                "source": "https://github.com/maximo-perez-villalba/framework-environment/tree/v1.1.2"
             },
             "install-path": "../maximo-perez-villalba/framework-environment"
         }

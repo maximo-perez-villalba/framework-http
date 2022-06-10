@@ -1,6 +1,6 @@
 <?php
 $appConfig = 
 [
-    'url-host' => 'http://localhost/framework-http/demo',
+    'url-host' => 'http://maximo.local/framework-http/demo',
     'path-log' => '/errors.log'
 ];

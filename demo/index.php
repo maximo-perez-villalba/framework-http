@@ -8,10 +8,27 @@ use framework\http\controller\request\HTTPRequestMap;
 
 Env::init( '/app-config.php' );
 HTTPRequestMap::init( '/http-requests.php' );
-
 HTTPRequest::invoke();
 
-$tests = [];
+$execUrlBase = Env::urlbase();
+
+$testCurrent = ( isset( $_GET[ 'urn' ] ) && !empty( $_GET[ 'urn' ] ) ) ? $_GET[ 'urn' ] : 'home';
+$tests =
+[
+    'home' =>
+    [
+        'path' => App::pathView( 'pages/home.php' ),
+        'url' => "{$execUrlBase}home",
+        'label' => "Inicio"
+    ],
+    'demo' =>
+    [
+        'path' => App::pathView( 'pages/demo.php' ),
+        'url' => "{$execUrlBase}demo",
+        'label' => "Demo"
+    ]
+];
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +39,12 @@ $tests = [];
 			<?php include_once ( App::pathView( '/blocks/top-navbar.php' ) ); ?>
 		</div>
     </div>
+    <br>
+	<br>
+    <br>
 	<?php include_once ( App::pathView( HTTPRequest::current()->response()->pathTemplate() ) ); ?>
+    <br>
+    <br>
  	<div class="container-fluid">
 		<div class="row">
 			<?php include_once ( App::pathView( '/blocks/html-footer.php' ) ); ?>

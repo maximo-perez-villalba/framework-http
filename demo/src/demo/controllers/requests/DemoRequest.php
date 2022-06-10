@@ -1,10 +1,10 @@
 <?php
 namespace demo\controllers\requests;
 
-use demo\controllers\responses\HomeResponse;
 use framework\http\controller\request\HTTPRequest;
+use demo\controllers\responses\DemoResponse;
 
-class HomeRequest extends HTTPRequest
+class DemoRequest extends HTTPRequest
 {
     
     /**
@@ -12,7 +12,7 @@ class HomeRequest extends HTTPRequest
      */
     public function __construct()
     {
-        $this->response = new HomeResponse();
+        $this->response = new DemoResponse();
     }
     
     /**

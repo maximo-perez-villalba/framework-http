@@ -9,7 +9,7 @@ class HTTP404Response extends HTTPResponse
      */
     public function __construct()
     {
-        $this->pathTemplate = '/pages/404.php';
+        $this->pathTemplate = 'pages/404.php';
     }
     
     /**

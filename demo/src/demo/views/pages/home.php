@@ -1,10 +1,19 @@
+<?php
+use framework\environment\Env;
+use framework\http\controller\request\HTTPRequest;
+
+$request = HTTPRequest::current();
+
+$url = $_SERVER[ 'REQUEST_SCHEME' ].'://'.$_SERVER[ 'HTTP_HOST' ].$_SERVER[ 'REQUEST_URI' ];
+
+?>
 <div class="container-fluid">
 	<div class="row" style="display: flex; min-height: 90vh;">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
                     <div class="list-group">
-                   	<?php foreach ( $tests as $id => $test ) : $activeItem = ( $id == $exec ) ? 'active' : '' ?>
+                   	<?php foreach ( $tests as $id => $test ) : $activeItem = ( $id == $testCurrent ) ? 'active' : '' ?>
                         <a href="<?= $test[ 'url' ] ?>" class="list-group-item list-group-item-action <?= $activeItem ?>" aria-current="true">
                         	<?= $test[ 'label' ] ?>
                         </a>
@@ -12,32 +21,45 @@
                     </div>    				
 				</div>
 				<div class="col-md-9 d-flex flex-column">
-					<?php if ( $exec == 'home' ):
-					       include( $currentPagePath );
-					    else : ?>
-    					<h4><?= $tests[ $exec ][ 'label' ] ?></h4>
-    					<hr>
-                        <ul class="nav nav-tabs" id="fichero-de-contenidos" role="tablist">
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link active" href="#" data-bs-target="#source-code" id="source-code-tab" data-bs-toggle="tab" role="tab" aria-controls="source-code" aria-selected="true">
-                            	Source code
-                            </a>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link" href="#" data-bs-target="#output" id="output-tab" data-bs-toggle="tab" role="tab" aria-controls="output" aria-selected="true">
-                            	Output
-                            </a>
-                          </li>
-                        </ul>    					
-                        <div class="tab-content p-4">
-                            <div class="tab-pane active" id="source-code" role="tabpanel" aria-labelledby="source-code-tab">
-                            	<?php show_source( $currentPagePath ); ?>
-                            </div>
-                            <div class="tab-pane" id="output" role="tabpanel" aria-labelledby="output-tab">
-                            	<?php include( $currentPagePath ); ?>
-                            </div>
-                        </div>
-					<?php endif; ?>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>URL</th>
+                                <td><?= $url ?></td>
+                            </tr>
+                            <tr>
+                                <th>File</th>
+                                <td><?= $_SERVER[ 'SCRIPT_NAME' ] ?></td>
+                            </tr>
+                            <tr>
+                                <th>Parameters</th>
+                                <td>
+                                	<table class="table table-secondary table-sm table-borderless">
+                                		<thead>
+                                			<tr>
+                                				<td scope="col" style="min-width:10%;"></td>
+                                				<td scope="col"></td>
+                                			</tr>
+                                		</thead>                                		
+                                	<?php foreach ( $_REQUEST as $name=>$value ) :?>
+                                		<tr>
+                                            <th><?= $name ?></th>
+                                            <td><?= $value ?></td>
+                                		</tr>
+                                	<?php endforeach; ?>
+                                	</table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Request</th>
+                                <td><?= get_class( $request ) ?></td>
+                            </tr>
+                            <tr>
+                                <th>View</th>
+                                <td><?= $request->response()->pathTemplate() ?></td>
+                            </tr>
+                        </tbody>
+                    </table>    				
 				</div>
 			</div>
 			<br>

@@ -1,9 +1,9 @@
 <?php
-namespace framework\http\controller\request;
+namespace demo\controllers\responses;
 
-use framework\http\controller\response\HTTP404Response;
+use framework\http\controller\response\HTTPResponse;
 
-class HTTP404Request extends HTTPRequest
+class DemoResponse extends HTTPResponse
 {
     
     /**
@@ -11,10 +11,11 @@ class HTTP404Request extends HTTPRequest
      */
     public function __construct()
     {
-        $this->response = new HTTP404Response();
+        $this->pathTemplate = 'pages/demo.php';
     }
     
     /**
+     * 
      * {@inheritDoc}
      * @see \ecommerce\framework\HTTPRequest::execute()
      */

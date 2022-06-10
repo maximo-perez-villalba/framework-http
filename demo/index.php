@@ -26,9 +26,14 @@ $tests =
         'path' => App::pathView( 'pages/demo.php' ),
         'url' => "{$execUrlBase}demo",
         'label' => "Demo"
+    ],
+    'routes' =>
+    [
+        'path' => App::pathView( 'pages/routes.php' ),
+        'url' => "{$execUrlBase}routes",
+        'label' => "Routes"
     ]
 ];
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

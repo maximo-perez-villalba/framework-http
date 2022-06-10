@@ -1,6 +1,7 @@
 <?php
 use framework\environment\Env;
 use framework\http\controller\request\HTTPRequest;
+use demo\functional\App;
 
 $request = HTTPRequest::current();
 
@@ -12,13 +13,7 @@ $url = $_SERVER[ 'REQUEST_SCHEME' ].'://'.$_SERVER[ 'HTTP_HOST' ].$_SERVER[ 'REQ
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
-                    <div class="list-group">
-                   	<?php foreach ( $tests as $id => $test ) : $activeItem = ( $id == $testCurrent ) ? 'active' : '' ?>
-                        <a href="<?= $test[ 'url' ] ?>" class="list-group-item list-group-item-action <?= $activeItem ?>" aria-current="true">
-                        	<?= $test[ 'label' ] ?>
-                        </a>
-                   	<?php endforeach; ?>
-                    </div>    				
+				<?php include_once( App::pathView( '/blocks/sidebar-navigation.php' ) );?>
 				</div>
 				<div class="col-md-9 d-flex flex-column">
                     <table class="table">

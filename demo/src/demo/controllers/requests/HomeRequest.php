@@ -7,18 +7,15 @@ use framework\http\controller\request\HTTPRequest;
 class HomeRequest extends HTTPRequest
 {
     
-    /**
-     * 
-     */
     public function __construct()
     {
         $this->response = new HomeResponse();
     }
-    
+
     /**
      * 
      * {@inheritDoc}
-     * @see \ecommerce\framework\HTTPRequest::execute()
+     * @see \framework\http\controller\request\HTTPRequest::execute()
      */
     public function execute()
     {}

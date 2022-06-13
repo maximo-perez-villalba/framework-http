@@ -57,7 +57,7 @@ abstract class HTTPRequest
                 foreach ( $parameters as $param )
                 {
                     list( $key, $value ) =  explode( '=' , $param );
-                    $_GET[ $key ] = $value;
+                    $_REQUEST[ $key ] = $_GET[ $key ] = $value;
                 }
             }
         }

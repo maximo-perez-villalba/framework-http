@@ -9,31 +9,6 @@ use framework\http\controller\request\HTTPRequestMap;
 Env::init( '/app-config.php' );
 HTTPRequestMap::init( '/http-requests.php' );
 HTTPRequest::invoke();
-
-$execUrlBase = Env::urlbase();
-
-$testCurrent = ( isset( $_GET[ 'urn' ] ) && !empty( $_GET[ 'urn' ] ) ) ? $_GET[ 'urn' ] : 'home';
-$tests =
-[
-    'home' =>
-    [
-        'path' => App::pathView( 'pages/home.php' ),
-        'url' => "{$execUrlBase}home",
-        'label' => "Inicio"
-    ],
-    'demo' =>
-    [
-        'path' => App::pathView( 'pages/demo.php' ),
-        'url' => "{$execUrlBase}demo",
-        'label' => "Demo"
-    ],
-    'routes' =>
-    [
-        'path' => App::pathView( 'pages/routes.php' ),
-        'url' => "{$execUrlBase}routes",
-        'label' => "Routes"
-    ]
-];
 ?>
 <!DOCTYPE html>
 <html lang="es">

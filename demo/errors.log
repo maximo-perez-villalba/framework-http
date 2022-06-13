@@ -1,5 +1,1 @@
-[10-Jun-2022 00:37:35 America/Argentina/Buenos_Aires] PHP Warning:  Undefined array key 404 in /home/maximo/eclipse-workspace/framework-http/demo/src/demo/views/blocks/html-head.php on line 9
-[10-Jun-2022 00:37:35 America/Argentina/Buenos_Aires] PHP Warning:  Trying to access array offset on value of type null in /home/maximo/eclipse-workspace/framework-http/demo/src/demo/views/blocks/html-head.php on line 9
-[10-Jun-2022 00:37:35 America/Argentina/Buenos_Aires] PHP Warning:  Undefined array key 404 in /home/maximo/eclipse-workspace/framework-http/demo/src/demo/views/blocks/top-navbar.php on line 7
-[10-Jun-2022 00:37:35 America/Argentina/Buenos_Aires] PHP Warning:  Trying to access array offset on value of type null in /home/maximo/eclipse-workspace/framework-http/demo/src/demo/views/blocks/top-navbar.php on line 7
-[10-Jun-2022 00:37:35 America/Argentina/Buenos_Aires] PHP Warning:  Undefined variable $currentPagePath in /home/maximo/eclipse-workspace/framework-http/demo/src/demo/views/pages/404.php on line 7
+/home/maximo/eclipse-workspace/framework-http/demo/src/demo/controllers/requests/RoutesRequest.php

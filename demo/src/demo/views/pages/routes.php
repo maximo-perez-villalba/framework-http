@@ -10,7 +10,7 @@ use framework\environment\Env;
 					<?php include_once( App::pathView( '/blocks/sidebar-navigation.php' ) );?>
 				</div>
 				<div class="col-md-9 d-flex flex-column">
-					<h3>HTTP Request Map</h3>
+					<h3>HTTP Request Routes</h3>
 					<hr>
 					<div>
 						<?php show_source( Env::path( '/http-requests.php' ) ) ?>

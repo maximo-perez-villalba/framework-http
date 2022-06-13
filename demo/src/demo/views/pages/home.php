@@ -7,7 +7,7 @@
 					<?php include_once( App::pathView( '/blocks/sidebar-navigation.php' ) );?>
 				</div>
 				<div class="col-md-9 d-flex flex-column">
-					<?php include_once( App::pathView( '/blocks/process-detail.php' ) );?>
+					
 				</div>
 			</div>
 			<br>

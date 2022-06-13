@@ -6,10 +6,10 @@
 	"authors": [
 		{
 			"name": "Máximo Perez Villalba",
-			"email": "maximo.perez@davinci.edu.ar"
+			"email": "maximo.villalba@gmail.com"
 		}
 	],
-	"version": "1.9.1",
+	"version": "1.9.2",
 	"minimum-stability": "stable",
 	"autoload": {
 		"psr-4": {

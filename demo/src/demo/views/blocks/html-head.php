@@ -14,4 +14,24 @@ use demo\functional\App;
     <link rel="icon" type="image/png" sizes="32x32" href="app/ui/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="app/ui/images/favicon-16x16.png">
     <link rel="manifest" href="app/ui/images/site.webmanifest">    
+    
+    <style>
+        .accordion-button-static
+        {
+            cursor: default !important;
+        }
+        .accordion-button-static table,
+        .table-inputs
+        {
+            margin-bottom: 0rem !important;
+        }
+        .table-inputs tbody tr:first-of-type th
+        {
+            width: 20% !important;
+        }
+        .accordion-button-static::after
+        {
+            background-image: none;
+        }
+    </style>
 </head>

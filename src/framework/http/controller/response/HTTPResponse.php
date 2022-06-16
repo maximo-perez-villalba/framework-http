@@ -23,15 +23,6 @@ abstract class HTTPResponse
     
     /**
      * 
-     * @return string
-     */
-    public function fullPathTemplate(): string
-    {
-        return Env::path( $this->pathTemplate );
-    }
-    
-    /**
-     * 
      */
     abstract public function execute();
 }

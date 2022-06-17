@@ -11,10 +11,6 @@ class ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3
         array (
             'framework\\' => 10,
         ),
-        'd' => 
-        array (
-            'demo\\' => 5,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -22,10 +18,6 @@ class ComposerStaticInit9b0f4a6c9f203498fe6412e23dc5c7e3
         array (
             0 => __DIR__ . '/../..' . '/src/framework',
             1 => __DIR__ . '/..' . '/maximo-perez-villalba/framework-environment/src/framework',
-        ),
-        'demo\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/demo/src/demo',
         ),
     );
 

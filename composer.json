@@ -9,12 +9,11 @@
 			"email": "maximo.villalba@gmail.com"
 		}
 	],
-	"version": "1.9.3",
+	"version": "2.0.0",
 	"minimum-stability": "stable",
 	"autoload": {
 		"psr-4": {
-			"framework\\": "src/framework/",
-			"demo\\": "demo/src/demo/"
+			"framework\\": "src/framework/"
 		}
 	},
 	"autoload-dev": {},

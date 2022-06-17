@@ -1,6 +1,0 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{REQUEST_URI} !app/(.*)$
-RewriteCond %{REQUEST_URI} !index\.php$
-RewriteRule (.*) index.php?urn=$1
-</IfModule>

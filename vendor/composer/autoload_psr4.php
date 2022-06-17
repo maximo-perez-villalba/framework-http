@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'framework\\' => array($baseDir . '/src/framework', $vendorDir . '/maximo-perez-villalba/framework-environment/src/framework'),
-    'demo\\' => array($baseDir . '/demo/src/demo'),
 );

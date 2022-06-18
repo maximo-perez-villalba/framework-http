@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+RewriteCond %{SCRIPT_FILENAME} -d [OR]
+RewriteCond %{SCRIPT_FILENAME} -f
+RewriteRule "(^|/)\." - [F]
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+Options All -Indexes
+
+RewriteCond %{REQUEST_URI} !index\.php$
+RewriteRule ^(.+)$ index.php?urn=$1 [L]
+
+</IfModule>
+

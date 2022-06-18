@@ -2,25 +2,40 @@
 namespace framework\http\controller\request;
 
 use framework\environment\Env;
-use ErrorException;
+
 
 abstract class HTTPRequestsRoutes
 {
     
     /**
-     * 
+     *
      * @var array
      */
     static private $routes = [];
- 
+    
     /**
-     * 
+     *
+     * @var string
+     */
+    static private $currentURN = NULL;
+    
+    /**
+     *
      * @var HTTPRequest
      */
     static private $currentHTTPRequest = NULL;
     
     /**
-     * 
+     *
+     * @return string|NULL
+     */
+    static public function currentURN(): ?string
+    {
+        return self::$currentURN;
+    }
+    
+    /**
+     *
      * @return HTTPRequest|NULL
      */
     static public function currentHTTPRequest(): ?HTTPRequest
@@ -28,10 +43,10 @@ abstract class HTTPRequestsRoutes
         return self::$currentHTTPRequest;
     }
     
-     /**
-      * 
-      * @param string $pathConfig
-      */
+    /**
+     *
+     * @param string $pathConfig
+     */
     static public function load( string $pathConfig )
     {
         $fullPathConfig = Env::path( $pathConfig );
@@ -45,9 +60,9 @@ abstract class HTTPRequestsRoutes
             self::$routes = $routes;
         }
     }
-
+    
     /**
-     * 
+     *
      * @param string $urn
      * @return HTTPRequest
      */
@@ -66,24 +81,21 @@ abstract class HTTPRequestsRoutes
     
     /**
      * Este método trabaja coordinado con la re-escritura de URI en el archivo .htaccess.
-     *  
+     *
      * RewriteEngine On
      * RewriteCond %{REQUEST_URI} !index\.php$
-     * RewriteRule (.*) index.php?urn=$1
-     * 
-     * @see /.htaccess file. 
-     * @throws ErrorException
+     * RewriteRule ^(.+)$ index.php?urn=$1
+     *
+     * @see /.htaccess file.
      */
     static public function start()
     {
+        self::$currentURN = '/';
         if( isset( $_GET[ 'urn' ] ) )
         {
-            self::$currentHTTPRequest = self::get( "/{$_GET[ 'urn' ]}" );
+            self::$currentURN .= $_GET[ 'urn' ];
         }
-        else
-        {
-            self::$currentHTTPRequest = new HTTP404Request();
-        }
+        self::$currentHTTPRequest = self::get( self::currentURN() );
         
         /*
          * Corrige re-escritura URI de parametros en el método http get.
@@ -98,7 +110,7 @@ abstract class HTTPRequestsRoutes
                 {
                     $parameters =  explode( '&' , $queryParameters );
                 }
-                else 
+                else
                 {
                     $parameters = [ $queryParameters ];
                 }

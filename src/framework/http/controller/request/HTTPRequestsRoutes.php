@@ -135,7 +135,11 @@ abstract class HTTPRequestsRoutes
         {
             self::currentHTTPRequest()->execute();
         }
-    }
-    
+        
+        /*
+         * Execute The response object
+         */
+        self::currentHTTPRequest()->response()->execute();
+    }    
 }
 

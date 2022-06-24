@@ -90,16 +90,26 @@ abstract class HTTPRequestsRoutes
      */
     static public function start()
     {
+        self::readURN();
+        self::fixURIParameters();
+        self::callAlternativeMethod();
+    }
+    
+    static private function readURN()
+    {
         self::$currentURN = '/';
         if( isset( $_GET[ 'urn' ] ) )
         {
             self::$currentURN .= $_GET[ 'urn' ];
         }
         self::$currentHTTPRequest = self::get( self::currentURN() );
-        
-        /*
-         * Corrige re-escritura URI de parametros en el método http get.
-         */
+    }
+
+    /**
+     * Corrige re-escritura URI de parametros en el método http get.
+     */
+    static private function fixURIParameters()
+    {
         if ( isset( $_SERVER[ 'REQUEST_URI' ] ) )
         {
             $queryParameters =  parse_url( $_SERVER[ 'REQUEST_URI' ], PHP_URL_QUERY );
@@ -121,12 +131,15 @@ abstract class HTTPRequestsRoutes
                 }
             }
         }
-        
-        /*
-         * Por defecto HTTPRequest::invoke llama al método execute.
-         * La llamada por defecto a execute puede ser redirigida a otro metodo a través de
-         * la agregación del parametro __callMethod en el http post method.
-         */
+    }
+    
+    /**
+     * Por defecto HTTPRequest::invoke llama al método execute.
+     * La llamada por defecto a execute puede ser redirigida a otro metodo a través de
+     * la agregación del parametro __callMethod en el http post method.
+     */
+    static private function callAlternativeMethod()
+    {
         if ( isset( $_POST[ '__callMethod' ] ) )
         {
             self::currentHTTPRequest()->executeCallMethod( $_POST[ '__callMethod' ] );
@@ -135,7 +148,7 @@ abstract class HTTPRequestsRoutes
         {
             self::currentHTTPRequest()->execute();
         }
-
-    }    
+    }
+    
 }
 

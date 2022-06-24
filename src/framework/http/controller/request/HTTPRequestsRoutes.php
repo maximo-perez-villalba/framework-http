@@ -8,25 +8,21 @@ abstract class HTTPRequestsRoutes
 {
     
     /**
-     *
      * @var array
      */
     static private $routes = [];
     
     /**
-     *
      * @var string
      */
     static private $currentURN = NULL;
     
     /**
-     *
      * @var HTTPRequest
      */
     static private $currentHTTPRequest = NULL;
     
     /**
-     *
      * @return string|NULL
      */
     static public function currentURN(): ?string
@@ -35,7 +31,6 @@ abstract class HTTPRequestsRoutes
     }
     
     /**
-     *
      * @return HTTPRequest|NULL
      */
     static public function currentHTTPRequest(): ?HTTPRequest
@@ -44,25 +39,9 @@ abstract class HTTPRequestsRoutes
     }
     
     /**
-     *
-     * @param string $pathConfig
-     */
-    static public function load( string $pathConfig )
-    {
-        $fullPathConfig = Env::path( $pathConfig );
-        if ( file_exists( $fullPathConfig ) )
-        {
-            /*
-             * Carga el archivo con el mapa de solicitudes.
-             */
-            $routes = [];
-            include_once( Env::path( $pathConfig ) );
-            self::$routes = $routes;
-        }
-    }
-    
-    /**
-     *
+     * Retorna la solicitud asociada a la URN. Si no encuentra la URN, redirige 
+     * la ejecución a una solicitud con código HTTP 404 page not found.
+     * 
      * @param string $urn
      * @return HTTPRequest
      */
@@ -78,7 +57,7 @@ abstract class HTTPRequestsRoutes
         }
         return new HTTP404Request();
     }
-    
+
     /**
      * Este método trabaja coordinado con la re-escritura de URI en el archivo .htaccess.
      *
@@ -87,14 +66,36 @@ abstract class HTTPRequestsRoutes
      * RewriteRule ^(.+)$ index.php?urn=$1
      *
      * @see /.htaccess file.
+     * 
+     * @param string $pathConfig
      */
-    static public function start()
+    static public function start( string $pathConfig )
     {
+        self::load( $pathConfig );
         self::readURN();
         self::fixURIParameters();
         self::callAlternativeMethod();
     }
     
+    /**
+     * Carga el archivo con el mapa de solicitudes.
+     * 
+     * @param string $pathConfig
+     */
+    static private function load( string $pathConfig )
+    {
+        $fullPathConfig = Env::path( $pathConfig );
+        if ( file_exists( $fullPathConfig ) )
+        {
+            $routes = [];
+            include_once( Env::path( $pathConfig ) );
+            self::$routes = $routes;
+        }
+    }
+    
+    /**
+     * Lee y configura la URN de la solicitud actual.
+     */
     static private function readURN()
     {
         self::$currentURN = '/';
@@ -134,9 +135,12 @@ abstract class HTTPRequestsRoutes
     }
     
     /**
-     * Por defecto HTTPRequest::invoke llama al método execute.
-     * La llamada por defecto a execute puede ser redirigida a otro metodo a través de
-     * la agregación del parametro __callMethod en el http post method.
+     * Ejecuta el método alternativo al método execute.
+     *  
+     * Para que el framework detecte que debe ejecutar un método alternativo,
+     * se debe enviar con la solicitud un parametro llamado __callMethod con el
+     * nombre del método a ejecutar alternativamente. Y la solictud debe ser de 
+     * tipo(método) POST. 
      */
     static private function callAlternativeMethod()
     {

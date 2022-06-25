@@ -72,9 +72,8 @@ abstract class HTTPRequestsRoutes
     static public function start( string $pathConfig )
     {
         self::load( $pathConfig );
-        self::readURN();
-        self::fixURIParameters();
-        self::callAlternativeMethod();
+        self::setCurrentRequest();
+        self::executeCurrentRequest();
     }
     
     /**
@@ -96,7 +95,7 @@ abstract class HTTPRequestsRoutes
     /**
      * Lee y configura la URN de la solicitud actual.
      */
-    static private function readURN()
+    static private function setCurrentRequest()
     {
         self::$currentURN = '/';
         if( isset( $_GET[ 'urn' ] ) )
@@ -104,12 +103,16 @@ abstract class HTTPRequestsRoutes
             self::$currentURN .= $_GET[ 'urn' ];
         }
         self::$currentHTTPRequest = self::get( self::currentURN() );
+        self::fixRequestURIParameters();
     }
 
     /**
-     * Corrige re-escritura URI de parametros en el método http get.
+     * La sobreescritura en el archivo .htaccess borra los parametros de 
+     * la solicitud en la peticiones de tipo GET.
+     * El método corrige este problema, cargando en $_GET los parametros 
+     * obtenidos desde el valor de la variable $_SERVER[ 'REQUEST_URI' ]. 
      */
-    static private function fixURIParameters()
+    static private function fixRequestURIParameters()
     {
         if ( isset( $_SERVER[ 'REQUEST_URI' ] ) )
         {
@@ -142,7 +145,7 @@ abstract class HTTPRequestsRoutes
      * nombre del método a ejecutar alternativamente. Y la solictud debe ser de 
      * tipo(método) POST. 
      */
-    static private function callAlternativeMethod()
+    static private function executeCurrentRequest()
     {
         if ( isset( $_POST[ '__callMethod' ] ) )
         {

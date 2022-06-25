@@ -73,7 +73,6 @@ abstract class HTTPRequestsRoutes
     {
         self::load( $pathConfig );
         self::setCurrentRequest();
-        self::executeCurrentRequest();
     }
     
     /**
@@ -138,14 +137,12 @@ abstract class HTTPRequestsRoutes
     }
     
     /**
-     * Ejecuta el método alternativo al método execute.
-     *  
      * Para que el framework detecte que debe ejecutar un método alternativo,
-     * se debe enviar con la solicitud un parametro llamado __callMethod con el
+     * se debe enviar con la solicitud un parametro con nombre __callMethod con el
      * nombre del método a ejecutar alternativamente. Y la solictud debe ser de 
      * tipo(método) POST. 
      */
-    static private function executeCurrentRequest()
+    static public function executeCurrentRequest()
     {
         if ( isset( $_POST[ '__callMethod' ] ) )
         {
@@ -157,5 +154,12 @@ abstract class HTTPRequestsRoutes
         }
     }
     
+    /**
+     * 
+     */
+    static public function executeCurrentResponse()
+    {
+        self::currentHTTPRequest()->response()->execute();
+    }
 }
 

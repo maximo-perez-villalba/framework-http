@@ -7,9 +7,12 @@ use framework\http\controller\request\HTTPRequest;
 class ExampleRequest extends HTTPRequest
 {
     
-    public function __construct()
+    /**
+     * @param ExampleResponse $aResponse
+     */
+    public function __construct( ExampleResponse $aResponse )
     {
-        $this->response = new ExampleResponse();
+        parent::__construct( $aResponse );
     }
 
     public function execute()

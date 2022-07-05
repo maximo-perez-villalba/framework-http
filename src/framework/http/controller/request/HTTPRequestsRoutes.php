@@ -3,7 +3,12 @@ namespace framework\http\controller\request;
 
 use framework\environment\Env;
 
-
+/**
+ * 
+ * 
+ * @author Máximo Perez Villalba 
+ * 
+ */
 abstract class HTTPRequestsRoutes
 {
     
@@ -106,8 +111,8 @@ abstract class HTTPRequestsRoutes
     }
 
     /**
-     * La sobreescritura en el archivo .htaccess borra los parametros de 
-     * la solicitud en la peticiones de tipo GET.
+     * La sobreescritura configurada en el archivo .htaccess borra los parametros de 
+     * la solicitud en las peticiones de tipo GET.
      * El método corrige este problema, cargando en $_GET los parametros 
      * obtenidos desde el valor de la variable $_SERVER[ 'REQUEST_URI' ]. 
      */
@@ -139,8 +144,8 @@ abstract class HTTPRequestsRoutes
     /**
      * Para que el framework detecte que debe ejecutar un método alternativo,
      * se debe enviar con la solicitud un parametro con nombre __callMethod con el
-     * nombre del método a ejecutar alternativamente. Y la solictud debe ser de 
-     * tipo(método) POST. 
+     * nombre del método a ejecutar alternativamente. Solo funciona con las solicitudes 
+     * de tipo(método) POST. 
      */
     static public function executeCurrentRequest()
     {

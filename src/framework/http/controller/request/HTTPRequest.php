@@ -19,6 +19,14 @@ abstract class HTTPRequest
     protected $response = null;
     
     /**
+     * @param HTTPResponse $aResponse
+     */
+    public function __construct( HTTPResponse $aResponse )
+    {
+        $this->response = $aResponse;
+    }
+    
+    /**
      * 
      * @param HTTPResponse $response
      * @return HTTPResponse|NULL

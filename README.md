@@ -1,13 +1,16 @@
 # framework-http
-El componente implementa una simple arquitectura HTTP en PHP.      
-Aunque este es un proyecto con fines pedagógico, la componente es completamente funcional.    
+La componente implementa una simple arquitectura HTTP orientada a objetos escrita en PHP.      
+Este proyecto tiene fines pedagógico, sin embargo la componente es completamente funcional.    
 
-## ¿Que problema resuelve?    
-Este componente permite controlar un conjunto de peticiones o mensajes escritos con el protocolo HTTP.    
-Todas las peticiones que atiende la aplicación son registradas en un archivo de configuración, siendo este archivo donde se define la API rest de la aplicación web.    
+## Como se instala
 
+## Como se usa
+
+## Documentación
+
+### Mensajes HTTP
 > Los mensajes HTTP son los medios por los cuales se intercambian datos entre servidores y clientes.    
->  Hay dos tipos de mensajes: 
+> Hay dos tipos de mensajes: 
 >  * **_peticiones_** enviadas por el cliente al servidor para pedir el inicio de una acción 
 >  * y **_respuestas_** que son la respuesta del servidor.     
 >     
@@ -25,15 +28,26 @@ OPTIONS /anypage.html HTTP/1.0
 ```        
       
 <br>   
-     
-## Contexto      
-El servidor web ( Nginx, Apache, OpenResty o cualquier otro ) a través de una conexión de red, recibe un evento de **solicitud** de recurso/acción escrito con el protocolo HTTP.       
-*  Si la solicitud es de un recurso estático simplemente lo devuelve (pe. archivos: HTML, PDF, videos, fotos, etc) 
-*  Si la solicitud es de ejecución de una acción, el servidor delega la ejecución en el script apuntado. Pudiendo el script estar escrito en muchos lenguajes posibles (PHP, Java, NodeJS, CGI,  ect).
 
-Los clientes web realizan peticiones sobre los servidores web invocando una [URI (Uniform Resource Identifier)](https://es.wikipedia.org/wiki/Identificador_de_recursos_uniforme).      
+Los clientes web realizan peticiones sobre los servidores web invocando una [URI](https://es.wikipedia.org/wiki/Identificador_de_recursos_uniforme)  (Uniform Resource Identifier).              
+
 ![URI = URL + URN](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/URI_Euler_Diagram_no_lone_URIs.svg/220px-URI_Euler_Diagram_no_lone_URIs.svg.png)     
 Siendo la URL la ubicación del servidor web y la URN la ubicación específica del recurso/acción que se solicita.     
+
+Los servidores web son sistemas preparados para escuchar los eventos de **solicitud de recursos** enviados por los clientes escrito con el protocolo HTTP a través de una conexión de red.     
+Existen dos tipos de recursos que pueden solicitar los clientes:      
+*  **Recursos estáticos** cuya respuesta es simplemente devolver/transmitir el archivo. Los recursos estáticos son por ejemplo los archivos : HTML, PDF, videos, fotos, etc. 
+*  **Recursos dinámicos** en este caso, el servidor delega la ejecución en el script apuntado. Pudiendo el script estar escrito en muchos lenguajes de programación como PHP, Java, NodeJS, CGI,  ect.
+
+     
+
+## ¿Que problema resuelve?    
+Este componente permite controlar un conjunto de peticiones escritas con el protocolo HTTP. 
+Para poder funcionar la componente requiere tener registradas las peticiones que puede atender.
+
+
+De manera tal que asocia la URN de la petición a una clase que ejecutaran acciones personalizadas.   
+El conjunto de peticiones son registradas y asociadas a un método en una clase  en un archivo de configuración, siendo este archivo donde se define la API rest de la aplicación web.    
 
       
 <br>   

@@ -1,11 +1,40 @@
 # framework-http
 La componente implementa una simple arquitectura HTTP orientada a objetos escrita en PHP.      
-Este proyecto tiene fines pedagógico, sin embargo la componente es completamente funcional.    
+Este proyecto tiene fines pedagógico.    
+      
+<br>     
+             
+## Instalación
+Se puede instalar framework-http a través de Composer de dos formas:      
 
-## Como se instala
+1 **Desde una consola de comandos** ir al directorio del proyecto y ejecutar:
+``` bash    
+composer require maximo-perez-villalba/framework-http
+```    
 
+2 También **modificando manualmente el archivo composer.json**
+``` json    
+"require": {
+  "maximo-perez-villalba/framework-http": ">=2.4.0"
+},
+```    
+2.1 Luego desde una consola de comandos ejecutar:
+``` bash    
+composer update
+```    
+      
+<br>     
+             
 ## Como se usa
 
+```php
+HTTPRequestsRoutes::start( 'Ruta del archivo de  configuración' );
+HTTPRequestsRoutes::executeCurrentRequest();
+HTTPRequestsRoutes::executeCurrentResponse();
+```    
+      
+<br>     
+             
 ## Documentación
 
 ### Mensajes HTTP
